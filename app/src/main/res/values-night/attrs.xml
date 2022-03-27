@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Layout">
+        <attr name="android:maxWidth"/>
+        <attr name="android:maxHeight"/>
+        <attr name="android:minWidth"/>
+        <attr name="android:minHeight"/>
+        <attr name="bottomDividerHeight" format="dimension"/>
+        <attr name="bottomDividerColor" format="color|reference"/>
+        <attr name="bottomDividerInsetLeft" format="dimension"/>
+        <attr name="bottomDividerInsetRight" format="dimension"/>
+        <attr name="topDividerHeight" format="dimension"/>
+        <attr name="topDividerColor" format="color|reference"/>
+        <attr name="topDividerInsetLeft" format="dimension"/>
+        <attr name="topDividerInsetRight" format="dimension"/>
+        <attr name="leftDividerWidth" format="dimension"/>
+        <attr name="leftDividerColor" format="color|reference"/>
+        <attr name="leftDividerInsetTop" format="dimension"/>
+        <attr name="leftDividerInsetBottom" format="dimension"/>
+        <attr name="rightDividerWidth" format="dimension"/>
+        <attr name="rightDividerColor" format="color|reference"/>
+        <attr name="rightDividerInsetTop" format="dimension"/>
+        <attr name="rightDividerInsetBottom" format="dimension"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="borderColor" format="color|reference"/>
+        <attr name="borderWidth" format="dimension"/>
+        <attr name="outerNormalColor" format="color|reference"/>
+        <attr name="hideRadiusSide" format="enum">
+            <enum name="none" value="0"/>
+            <enum name="top" value="1"/>
+            <enum name="right" value="2"/>
+            <enum name="bottom" value="3"/>
+            <enum name="left" value="4"/>
+        </attr>
+        <attr name="showBorderOnlyBeforeL" format="boolean"/>
+        <attr name="shadowElevation" format="dimension"/>
+        <attr name="shadowColor" format="color|reference"/>
+        <attr name="shadowAlpha" format="float"/>
+        <attr name="outlineInsetTop" format="dimension"/>
+        <attr name="outlineInsetLeft" format="dimension"/>
+        <attr name="outlineInsetRight" format="dimension"/>
+        <attr name="outlineInsetBottom" format="dimension"/>
+        <attr name="outlineExcludePadding" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="Shape">
+        <attr name="normalLeftTopRadius" format="dimension"/>
+        <attr name="normalRightTopRadius" format="dimension"/>
+        <attr name="normalLeftBottomRadius" format="dimension"/>
+        <attr name="normalRightBottomRadius" format="dimension"/>
+        <attr name="normalRadius" format="dimension"/>
+        <attr name="normalLeftPadding" format="dimension"/>
+        <attr name="normalTopPadding" format="dimension"/>
+        <attr name="normalRightPadding" format="dimension"/>
+        <attr name="normalBottomPadding" format="dimension"/>
+        <attr name="normalPadding" format="dimension"/>
+        <attr name="normalColor" format="color|reference"/>
+        <attr name="normalStrokeColor" format="color|reference"/>
+        <attr name="normalStrokeWidth" format="dimension"/>
+        <attr name="normalDashWidth" format="dimension"/>
+        <attr name="normalDashGap" format="dimension"/>
+        <attr name="pressedLeftTopRadius" format="dimension"/>
+        <attr name="pressedRightTopRadius" format="dimension"/>
+        <attr name="pressedLeftBottomRadius" format="dimension"/>
+        <attr name="pressedRightBottomRadius" format="dimension"/>
+        <attr name="pressedRadius" format="dimension"/>
+        <attr name="pressedLeftPadding" format="dimension"/>
+        <attr name="pressedTopPadding" format="dimension"/>
+        <attr name="pressedRightPadding" format="dimension"/>
+        <attr name="pressedBottomPadding" format="dimension"/>
+        <attr name="pressedPadding" format="dimension"/>
+        <attr name="pressedColor" format="color|reference"/>
+        <attr name="pressedStrokeColor" format="color|reference"/>
+        <attr name="pressedStrokeWidth" format="dimension"/>
+        <attr name="pressedDashWidth" format="dimension"/>
+        <attr name="pressedDashGap" format="dimension"/>
+        <attr name="noEnableLeftTopRadius" format="dimension"/>
+        <attr name="noEnableRightTopRadius" format="dimension"/>
+        <attr name="noEnableLeftBottomRadius" format="dimension"/>
+        <attr name="noEnableRightBottomRadius" format="dimension"/>
+        <attr name="noEnableRadius" format="dimension"/>
+        <attr name="noEnableLeftPadding" format="dimension"/>
+        <attr name="noEnableTopPadding" format="dimension"/>
+        <attr name="noEnableRightPadding" format="dimension"/>
+        <attr name="noEnableBottomPadding" format="dimension"/>
+        <attr name="noEnablePadding" format="dimension"/>
+        <attr name="noEnableColor" format="color|reference"/>
+        <attr name="noEnableStrokeColor" format="color|reference"/>
+        <attr name="noEnableStrokeWidth" format="dimension"/>
+        <attr name="noEnableDashWidth" format="dimension"/>
+        <attr name="noEnableDashGap" format="dimension"/>
+    </declare-styleable>
+</resources>
