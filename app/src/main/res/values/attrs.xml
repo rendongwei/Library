@@ -59,6 +59,7 @@
         <attr name="normalStrokeWidth" format="dimension"/>
         <attr name="normalDashWidth" format="dimension"/>
         <attr name="normalDashGap" format="dimension"/>
+        
         <attr name="pressedLeftTopRadius" format="dimension"/>
         <attr name="pressedRightTopRadius" format="dimension"/>
         <attr name="pressedLeftBottomRadius" format="dimension"/>
@@ -74,6 +75,7 @@
         <attr name="pressedStrokeWidth" format="dimension"/>
         <attr name="pressedDashWidth" format="dimension"/>
         <attr name="pressedDashGap" format="dimension"/>
+
         <attr name="noEnableLeftTopRadius" format="dimension"/>
         <attr name="noEnableRightTopRadius" format="dimension"/>
         <attr name="noEnableLeftBottomRadius" format="dimension"/>
@@ -89,5 +91,38 @@
         <attr name="noEnableStrokeWidth" format="dimension"/>
         <attr name="noEnableDashWidth" format="dimension"/>
         <attr name="noEnableDashGap" format="dimension"/>
+
+        <attr name="focusLeftTopRadius" format="dimension"/>
+        <attr name="focusRightTopRadius" format="dimension"/>
+        <attr name="focusLeftBottomRadius" format="dimension"/>
+        <attr name="focusRightBottomRadius" format="dimension"/>
+        <attr name="focusRadius" format="dimension"/>
+        <attr name="focusLeftPadding" format="dimension"/>
+        <attr name="focusTopPadding" format="dimension"/>
+        <attr name="focusRightPadding" format="dimension"/>
+        <attr name="focusBottomPadding" format="dimension"/>
+        <attr name="focusPadding" format="dimension"/>
+        <attr name="focusColor" format="color|reference"/>
+        <attr name="focusStrokeColor" format="color|reference"/>
+        <attr name="focusStrokeWidth" format="dimension"/>
+        <attr name="focusDashWidth" format="dimension"/>
+        <attr name="focusDashGap" format="dimension"/>
+
+        <attr name="selectedLeftTopRadius" format="dimension"/>
+        <attr name="selectedRightTopRadius" format="dimension"/>
+        <attr name="selectedLeftBottomRadius" format="dimension"/>
+        <attr name="selectedRightBottomRadius" format="dimension"/>
+        <attr name="selectedRadius" format="dimension"/>
+        <attr name="selectedLeftPadding" format="dimension"/>
+        <attr name="selectedTopPadding" format="dimension"/>
+        <attr name="selectedRightPadding" format="dimension"/>
+        <attr name="selectedBottomPadding" format="dimension"/>
+        <attr name="selectedPadding" format="dimension"/>
+        <attr name="selectedColor" format="color|reference"/>
+        <attr name="selectedStrokeColor" format="color|reference"/>
+        <attr name="selectedStrokeWidth" format="dimension"/>
+        <attr name="selectedDashWidth" format="dimension"/>
+        <attr name="selectedDashGap" format="dimension"/>
+        
     </declare-styleable>
 </resources>

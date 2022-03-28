@@ -143,6 +143,97 @@ interface IShape {
 
     // 设置不可用虚线间距
     fun setNoEnableDashGap(dashGap: Int)
+
+    // 设置焦点左上圆角
+    fun setFocusLeftTopRadius(radius: Int)
+
+    // 设置焦点右上圆角
+    fun setFocusRightTopRadius(radius: Int)
+
+    // 设置焦点左下圆角
+    fun setFocusLeftBottomRadius(radius: Int)
+
+    // 设置焦点右下圆角
+    fun setFocusRightBottomRadius(radius: Int)
+
+    // 设置焦点圆角
+    fun setFocusRadius(radius: Int)
+
+    // 设置焦点左内距
+    fun setFocusLeftPadding(padding: Int)
+
+    // 设置焦点上内距
+    fun setFocusTopPadding(padding: Int)
+
+    // 设置焦点右内距
+    fun setFocusRightPadding(padding: Int)
+
+    // 设置焦点下内距
+    fun setFocusBottomPadding(padding: Int)
+
+    // 设置焦点内距
+    fun setFocusPadding(padding: Int)
+
+    // 设置焦点背景色
+    fun setFocusColor(@ColorInt color: Int)
+
+    // 设置焦点描线颜色
+    fun setFocusStrokeColor(@ColorInt color: Int)
+
+    // 设置焦点描线宽度
+    fun setFocusStrokeWidth(strokeWidth: Int)
+
+    // 设置焦点虚线宽度
+    fun setFocusDashWidth(dashWidth: Int)
+
+    // 设置焦点虚线间距
+    fun setFocusDashGap(dashGap: Int)
+
+
+    // 设置选中左上圆角
+    fun setSelectedLeftTopRadius(radius: Int)
+
+    // 设置选中右上圆角
+    fun setSelectedRightTopRadius(radius: Int)
+
+    // 设置选中左下圆角
+    fun setSelectedLeftBottomRadius(radius: Int)
+
+    // 设置选中右下圆角
+    fun setSelectedRightBottomRadius(radius: Int)
+
+    // 设置选中圆角
+    fun setSelectedRadius(radius: Int)
+
+    // 设置选中左内距
+    fun setSelectedLeftPadding(padding: Int)
+
+    // 设置选中上内距
+    fun setSelectedTopPadding(padding: Int)
+
+    // 设置选中右内距
+    fun setSelectedRightPadding(padding: Int)
+
+    // 设置选中下内距
+    fun setSelectedBottomPadding(padding: Int)
+
+    // 设置选中内距
+    fun setSelectedPadding(padding: Int)
+
+    // 设置选中背景色
+    fun setSelectedColor(@ColorInt color: Int)
+
+    // 设置选中描线颜色
+    fun setSelectedStrokeColor(@ColorInt color: Int)
+
+    // 设置选中描线宽度
+    fun setSelectedStrokeWidth(strokeWidth: Int)
+
+    // 设置选中虚线宽度
+    fun setSelectedDashWidth(dashWidth: Int)
+
+    // 设置选中虚线间距
+    fun setSelectedDashGap(dashGap: Int)
     
     // 设置shape
     fun setShape()

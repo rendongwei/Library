@@ -67,6 +67,38 @@ class ShapeHelper : IShape {
     private var mNoEnableDashWidth: Int = 0
     private var mNoEnableDashGap: Int = 0
 
+    private var mFocusLeftTopRadius: Int = 0
+    private var mFocusRightTopRadius: Int = 0
+    private var mFocusLeftBottomRadius: Int = 0
+    private var mFocusRightBottomRadius: Int = 0
+    private var mFocusRadius: Int = 0
+    private var mFocusLeftPadding: Int = 0
+    private var mFocusTopPadding: Int = 0
+    private var mFocusRightPadding: Int = 0
+    private var mFocusBottomPadding: Int = 0
+    private var mFocusPadding: Int = 0
+    private var mFocusColor: Int = 0
+    private var mFocusStrokeColor: Int = 0
+    private var mFocusStrokeWidth: Int = 0
+    private var mFocusDashWidth: Int = 0
+    private var mFocusDashGap: Int = 0
+
+    private var mSelectedLeftTopRadius: Int = 0
+    private var mSelectedRightTopRadius: Int = 0
+    private var mSelectedLeftBottomRadius: Int = 0
+    private var mSelectedRightBottomRadius: Int = 0
+    private var mSelectedRadius: Int = 0
+    private var mSelectedLeftPadding: Int = 0
+    private var mSelectedTopPadding: Int = 0
+    private var mSelectedRightPadding: Int = 0
+    private var mSelectedBottomPadding: Int = 0
+    private var mSelectedPadding: Int = 0
+    private var mSelectedColor: Int = 0
+    private var mSelectedStrokeColor: Int = 0
+    private var mSelectedStrokeWidth: Int = 0
+    private var mSelectedDashWidth: Int = 0
+    private var mSelectedDashGap: Int = 0
+
     override fun initShape(view: View, attrs: AttributeSet?) {
         mContext = view.context
         mOwner = WeakReference(view)
@@ -156,6 +188,62 @@ class ShapeHelper : IShape {
                 typedArray.getDimensionPixelSize(R.styleable.Shape_noEnableDashWidth, 0)
             mNoEnableDashGap =
                 typedArray.getDimensionPixelSize(R.styleable.Shape_noEnableDashGap, 0)
+
+            mFocusLeftTopRadius =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusLeftTopRadius, 0)
+            mFocusRightTopRadius =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusRightTopRadius, 0)
+            mFocusLeftBottomRadius =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusLeftBottomRadius, 0)
+            mFocusRightBottomRadius =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusRightBottomRadius, 0)
+            mFocusRadius = typedArray.getDimensionPixelSize(R.styleable.Shape_focusRadius, 0)
+            mFocusLeftPadding =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusLeftPadding, 0)
+            mFocusTopPadding =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusTopPadding, 0)
+            mFocusRightPadding =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusRightPadding, 0)
+            mFocusBottomPadding =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusBottomPadding, 0)
+            mFocusPadding =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusPadding, 0)
+            mFocusColor = typedArray.getColor(R.styleable.Shape_focusColor, 0)
+            mFocusStrokeColor = typedArray.getColor(R.styleable.Shape_focusStrokeColor, 0)
+            mFocusStrokeWidth =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusStrokeWidth, 0)
+            mFocusDashWidth =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusDashWidth, 0)
+            mFocusDashGap =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_focusDashGap, 0)
+
+            mSelectedLeftTopRadius =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedLeftTopRadius, 0)
+            mSelectedRightTopRadius =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedRightTopRadius, 0)
+            mSelectedLeftBottomRadius =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedLeftBottomRadius, 0)
+            mSelectedRightBottomRadius =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedRightBottomRadius, 0)
+            mSelectedRadius = typedArray.getDimensionPixelSize(R.styleable.Shape_selectedRadius, 0)
+            mSelectedLeftPadding =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedLeftPadding, 0)
+            mSelectedTopPadding =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedTopPadding, 0)
+            mSelectedRightPadding =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedRightPadding, 0)
+            mSelectedBottomPadding =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedBottomPadding, 0)
+            mSelectedPadding =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedPadding, 0)
+            mSelectedColor = typedArray.getColor(R.styleable.Shape_selectedColor, 0)
+            mSelectedStrokeColor = typedArray.getColor(R.styleable.Shape_selectedStrokeColor, 0)
+            mSelectedStrokeWidth =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedStrokeWidth, 0)
+            mSelectedDashWidth =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedDashWidth, 0)
+            mSelectedDashGap =
+                typedArray.getDimensionPixelSize(R.styleable.Shape_selectedDashGap, 0)
 
             typedArray.recycle()
         }
@@ -342,10 +430,131 @@ class ShapeHelper : IShape {
         mNoEnableDashGap = dashGap
     }
 
+
+    override fun setFocusLeftTopRadius(radius: Int) {
+        mFocusLeftTopRadius = radius
+    }
+
+    override fun setFocusRightTopRadius(radius: Int) {
+        mFocusRightTopRadius = radius
+    }
+
+    override fun setFocusLeftBottomRadius(radius: Int) {
+        mFocusLeftBottomRadius = radius
+    }
+
+    override fun setFocusRightBottomRadius(radius: Int) {
+        mFocusRightBottomRadius = radius
+    }
+
+    override fun setFocusRadius(radius: Int) {
+        mFocusRadius = radius
+    }
+
+    override fun setFocusLeftPadding(padding: Int) {
+        mFocusLeftPadding = padding
+    }
+
+    override fun setFocusTopPadding(padding: Int) {
+        mFocusTopPadding = padding
+    }
+
+    override fun setFocusRightPadding(padding: Int) {
+        mFocusRightPadding = padding
+    }
+
+    override fun setFocusBottomPadding(padding: Int) {
+        mFocusBottomPadding = padding
+    }
+
+    override fun setFocusPadding(padding: Int) {
+        mFocusPadding = padding
+    }
+
+    override fun setFocusColor(@ColorInt color: Int) {
+        mFocusColor = color
+    }
+
+    override fun setFocusStrokeColor(@ColorInt color: Int) {
+        mFocusStrokeColor = color
+    }
+
+    override fun setFocusStrokeWidth(strokeWidth: Int) {
+        mFocusStrokeWidth = strokeWidth
+    }
+
+    override fun setFocusDashWidth(dashWidth: Int) {
+        mFocusDashWidth = dashWidth
+    }
+
+    override fun setFocusDashGap(dashGap: Int) {
+        mFocusDashGap = dashGap
+    }
+
+    override fun setSelectedLeftTopRadius(radius: Int) {
+        mSelectedLeftTopRadius = radius
+    }
+
+    override fun setSelectedRightTopRadius(radius: Int) {
+        mSelectedRightTopRadius = radius
+    }
+
+    override fun setSelectedLeftBottomRadius(radius: Int) {
+        mSelectedLeftBottomRadius = radius
+    }
+
+    override fun setSelectedRightBottomRadius(radius: Int) {
+        mSelectedRightBottomRadius = radius
+    }
+
+    override fun setSelectedRadius(radius: Int) {
+        mSelectedRadius = radius
+    }
+
+    override fun setSelectedLeftPadding(padding: Int) {
+        mSelectedLeftPadding = padding
+    }
+
+    override fun setSelectedTopPadding(padding: Int) {
+        mSelectedTopPadding = padding
+    }
+
+    override fun setSelectedRightPadding(padding: Int) {
+        mSelectedRightPadding = padding
+    }
+
+    override fun setSelectedBottomPadding(padding: Int) {
+        mSelectedBottomPadding = padding
+    }
+
+    override fun setSelectedPadding(padding: Int) {
+        mSelectedPadding = padding
+    }
+
+    override fun setSelectedColor(@ColorInt color: Int) {
+        mSelectedColor = color
+    }
+
+    override fun setSelectedStrokeColor(@ColorInt color: Int) {
+        mSelectedStrokeColor = color
+    }
+
+    override fun setSelectedStrokeWidth(strokeWidth: Int) {
+        mSelectedStrokeWidth = strokeWidth
+    }
+
+    override fun setSelectedDashWidth(dashWidth: Int) {
+        mSelectedDashWidth = dashWidth
+    }
+
+    override fun setSelectedDashGap(dashGap: Int) {
+        mSelectedDashGap = dashGap
+    }
+    
     override fun setShape() {
         mOwner?.get()?.apply {
-            var drawable = StateListDrawable()
-            var pressedDrawable = getShape(
+            val drawable = StateListDrawable()
+            val pressedDrawable = getShape(
                 mPressedLeftTopRadius,
                 mPressedRightTopRadius,
                 mPressedLeftBottomRadius,
@@ -366,7 +575,7 @@ class ShapeHelper : IShape {
                 drawable.addState(intArrayOf(android.R.attr.state_pressed), this)
             }
 
-            var noEnableDrawable = getShape(
+            val noEnableDrawable = getShape(
                 mNoEnableLeftTopRadius,
                 mNoEnableRightTopRadius,
                 mNoEnableLeftBottomRadius,
@@ -388,7 +597,51 @@ class ShapeHelper : IShape {
                 drawable.addState(intArrayOf(-android.R.attr.state_enabled), this)
             }
 
-            var normalDrawable = getShape(
+            val focusDrawable = getShape(
+                mFocusLeftTopRadius,
+                mFocusRightTopRadius,
+                mFocusLeftBottomRadius,
+                mFocusRightBottomRadius,
+                mFocusRadius,
+                mFocusLeftPadding,
+                mFocusTopPadding,
+                mFocusRightPadding,
+                mFocusBottomPadding,
+                mFocusPadding,
+                mFocusColor,
+                mFocusStrokeColor,
+                mFocusStrokeWidth,
+                mFocusDashWidth,
+                mFocusDashGap
+            )
+
+            focusDrawable?.apply {
+                drawable.addState(intArrayOf(-android.R.attr.state_focused), this)
+            }
+
+            val selectedDrawable = getShape(
+                mSelectedLeftTopRadius,
+                mSelectedRightTopRadius,
+                mSelectedLeftBottomRadius,
+                mSelectedRightBottomRadius,
+                mSelectedRadius,
+                mSelectedLeftPadding,
+                mSelectedTopPadding,
+                mSelectedRightPadding,
+                mSelectedBottomPadding,
+                mSelectedPadding,
+                mSelectedColor,
+                mSelectedStrokeColor,
+                mSelectedStrokeWidth,
+                mSelectedDashWidth,
+                mSelectedDashGap
+            )
+
+            selectedDrawable?.apply {
+                drawable.addState(intArrayOf(-android.R.attr.state_selected), this)
+            }
+
+            val normalDrawable = getShape(
                 mNormalLeftTopRadius,
                 mNormalRightTopRadius,
                 mNormalLeftBottomRadius,
