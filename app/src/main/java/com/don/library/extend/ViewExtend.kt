@@ -1,5 +1,6 @@
 package com.don.library.extend
 
+import android.graphics.Bitmap
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.view.TouchDelegate
@@ -47,4 +48,31 @@ fun View.expendTouchArea(expendSize: Int) {
         rect.bottom += expendSize
         parent.touchDelegate = TouchDelegate(rect, this)
     }
+}
+
+/**
+ * 获取在屏幕的位置
+ */
+fun View.getLocationOnScreenRect(): Rect {
+    val location = IntArray(2)
+    getLocationOnScreen(location)
+    return Rect(location[0], location[1], location[0] + width, location[1] + height)
+}
+
+/**
+ * 获取在父布局的位置
+ */
+fun View.getLocationOnWindowRect(): Rect {
+    val location = IntArray(2)
+    getLocationInWindow(location)
+    return Rect(location[0], location[1], location[0] + width, location[1] + height)
+}
+
+/**
+ * 获取bitmap
+ */
+fun View.transformationBitmap(): Bitmap {
+    isDrawingCacheEnabled = true
+    buildDrawingCache()
+    return getDrawingCache(false)
 }
