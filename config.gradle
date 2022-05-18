@@ -73,7 +73,7 @@ ext {
 
     logger = "com.orhanobut:logger:$dependVersion.loggerSdkVersion"
     statusBar = "com.jaeger.statusbarutil:library:1.5.1"
-    mmkv = "com.tencent:mmkv-static:1.2.7"
+    mmkv = "com.tencent:mmkv-static:1.2.13"
 
     eventBus = "org.greenrobot:eventbus:3.0.0"
 
