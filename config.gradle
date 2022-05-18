@@ -45,7 +45,7 @@ ext {
     rxJava = [
             rxJava   : "io.reactivex.rxjava2:rxjava:$dependVersion.rxjavaSdkVersion",
             rxAndroid: "io.reactivex.rxjava2:rxandroid:$dependVersion.rxandroidSdkVersion",
-            rxJava3  : "io.reactivex.rxjava3:rxjava:3.0.0-RC0"
+//            rxJava3  : "io.reactivex.rxjava3:rxjava:3.0.0-RC0"
     ]
 
     retrofit = [

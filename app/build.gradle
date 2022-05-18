@@ -8,7 +8,7 @@ android {
     compileSdk rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.don.library"
+//        applicationId "com.don.library"
         minSdk rootProject.ext.android.minSdkVersion
         targetSdk rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
