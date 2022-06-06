@@ -57,7 +57,7 @@ open abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                         mLoopJobMap.remove(url)
                         mLoopHandlerMap.remove(url)
                         var newHandler = Handler {
-                            var newJob = launch(block, { }, success, { }, { })
+                            var newJob = launch(block, { }, success, { }, { }, interval)
                             mLoopJobMap[url] = newJob
                             true
                         }

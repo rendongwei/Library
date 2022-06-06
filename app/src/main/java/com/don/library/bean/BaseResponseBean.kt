@@ -2,11 +2,11 @@ package com.don.library.bean
 
 import java.io.Serializable
 
-open abstract class BaseResponseBean<T> : Serializable {
-
-    val data: T? = null
-
-    val message: String? = null
+data class BaseResponseBean<T>(
+    var code: Int = -1,
+    var data: T? = null,
+    var message: String? = null,
+) : Serializable {
 
     var loopUrl: String? = null
 
