@@ -23,7 +23,8 @@ open abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         error: suspend CoroutineScope.(Pair<String?, BaseResponseBean<T>?>) -> Unit = { },
         success: suspend CoroutineScope.(T?) -> Unit = {},
         start: suspend CoroutineScope.() -> Unit = { },
-        complete: suspend CoroutineScope.() -> Unit = { }
+        complete: suspend CoroutineScope.() -> Unit = { },
+        interval: Long = -1
     ): Job {
         return mViewModelScope.launch {
             start()
@@ -48,8 +49,7 @@ open abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                         error(Pair(bean?.message, bean))
                     }
                     var url = bean?.loopUrl
-                    var timeout = bean?.interval ?: -1
-                    if (!url.isNullOrEmpty() && timeout > 0) {
+                    if (!url.isNullOrEmpty() && interval > 0) {
                         var job = mLoopJobMap[url]
                         var handler = mLoopHandlerMap[url]
                         job?.cancel()
@@ -61,7 +61,7 @@ open abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                             mLoopJobMap[url] = newJob
                             true
                         }
-                        newHandler.sendEmptyMessageDelayed(0x10000, timeout)
+                        newHandler.sendEmptyMessageDelayed(0x10000, interval)
                         mLoopHandlerMap[url] = newHandler
                     }
                 }

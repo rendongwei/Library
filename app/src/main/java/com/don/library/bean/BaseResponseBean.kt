@@ -8,8 +8,6 @@ open abstract class BaseResponseBean<T> : Serializable {
 
     val message: String? = null
 
-    var interval: Long = -1
-
     var loopUrl: String? = null
 
     open fun isSuccess(): Boolean {
@@ -19,4 +17,5 @@ open abstract class BaseResponseBean<T> : Serializable {
     open fun isLogout(): Boolean {
         return false
     }
+
 }
