@@ -18,10 +18,10 @@ open abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     private val mLoopJobMap = mutableMapOf<String, Job>()
     private val mLoopHandlerMap = mutableMapOf<String, Handler>()
 
-    fun <T> launch(
-        block: suspend CoroutineScope.() -> Response<BaseResponseBean<T>>,
-        error: suspend CoroutineScope.(Pair<String?, BaseResponseBean<T>?>) -> Unit = { },
-        success: suspend CoroutineScope.(T?) -> Unit = {},
+    fun <T : BaseResponseBean<E>, E> launch(
+        block: suspend CoroutineScope.() -> Response<T>,
+        error: suspend CoroutineScope.(Pair<String?, E?>) -> Unit = { },
+        success: suspend CoroutineScope.(E?) -> Unit = {},
         start: suspend CoroutineScope.() -> Unit = { },
         complete: suspend CoroutineScope.() -> Unit = { },
         interval: Long = -1
@@ -30,11 +30,11 @@ open abstract class BaseViewModel : ViewModel(), LifecycleObserver {
             start()
             try {
                 if (isActive) {
-                    var bean: BaseResponseBean<T>? = withContext(Dispatchers.IO) {
+                    var bean: BaseResponseBean<E>? = withContext(Dispatchers.IO) {
                         var response = block()
                         var result = response.body() ?: Gson().fromJson(
                             String(response.errorBody()?.bytes() ?: byteArrayOf()),
-                            object : TypeToken<BaseResponseBean<T>>() {}.type
+                            object : TypeToken<BaseResponseBean<E>>() {}.type
                         )
                         var url = response.raw().request().url().toString()
                         result?.loopUrl = url
