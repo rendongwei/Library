@@ -616,7 +616,7 @@ class ShapeHelper : IShape {
             )
 
             focusDrawable?.apply {
-                drawable.addState(intArrayOf(-android.R.attr.state_focused), this)
+                drawable.addState(intArrayOf(android.R.attr.state_focused), this)
             }
 
             val selectedDrawable = getShape(
@@ -638,7 +638,7 @@ class ShapeHelper : IShape {
             )
 
             selectedDrawable?.apply {
-                drawable.addState(intArrayOf(-android.R.attr.state_selected), this)
+                drawable.addState(intArrayOf(android.R.attr.state_selected), this)
             }
 
             val normalDrawable = getShape(
