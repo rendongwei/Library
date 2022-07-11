@@ -1,10 +1,7 @@
 package com.don.library.extend
 
-import android.content.Context
 import android.graphics.Paint
 import android.graphics.Typeface
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 
@@ -103,28 +100,43 @@ fun TextView.fontHeight(): Float {
     return fm.descent - fm.ascent
 }
 
-fun TextView.drawableEnd(resId: Int,padding: Int? = 0) {
+fun TextView.drawableLeft(resId: Int, padding: Int? = null) {
     ContextCompat.getDrawable(context, resId)?.apply {
         setBounds(0, 0, minimumWidth, minimumHeight)
-        if (padding != null) {
-            compoundDrawablePadding = padding
+        padding?.apply {
+            compoundDrawablePadding = this
+        }
+        setCompoundDrawables(this, null, null, null)
+    }
+}
+
+fun TextView.drawableTop(resId: Int, padding: Int? = null) {
+    ContextCompat.getDrawable(context, resId)?.apply {
+        setBounds(0, 0, minimumWidth, minimumHeight)
+        padding?.apply {
+            compoundDrawablePadding = this
+        }
+        setCompoundDrawables(null, this, null, null)
+    }
+}
+
+fun TextView.drawableRight(resId: Int, padding: Int? = null) {
+    ContextCompat.getDrawable(context, resId)?.apply {
+        setBounds(0, 0, minimumWidth, minimumHeight)
+        padding?.apply {
+            compoundDrawablePadding = this
         }
         setCompoundDrawables(null, null, this, null)
     }
 }
 
-// 显示键盘
-fun EditText.showSoftInput() {
-    requestFocus()
-    var manager =
-        context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    manager.showSoftInput(this, 0)
-}
 
-// 隐藏键盘
-fun EditText.hideSoftInput() {
-    clearFocus()
-    var manager =
-        context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    manager.hideSoftInputFromWindow(windowToken, 0)
+fun TextView.drawableBottom(resId: Int, padding: Int? = null) {
+    ContextCompat.getDrawable(context, resId)?.apply {
+        setBounds(0, 0, minimumWidth, minimumHeight)
+        padding?.apply {
+            compoundDrawablePadding = this
+        }
+        setCompoundDrawables(null, null, null, this)
+    }
 }

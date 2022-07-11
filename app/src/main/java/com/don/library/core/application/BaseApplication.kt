@@ -5,6 +5,7 @@ import android.app.Application
 import android.os.Bundle
 import com.don.library.constants.Tag
 import com.don.library.manager.ActivityManager
+import com.don.library.manager.ViewModelManager
 import com.don.library.util.LogUtil
 
 /**
@@ -15,6 +16,7 @@ open class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         LogUtil.log(Tag.APPLICATION, "onCreate")
+        ViewModelManager.onCreate()
         registerActivityLifecycleCallbacks()
     }
 
@@ -58,5 +60,6 @@ open class BaseApplication : Application() {
     override fun onTerminate() {
         super.onTerminate()
         LogUtil.log(Tag.APPLICATION, "onTerminate")
+        ViewModelManager.onDestroy()
     }
 }
