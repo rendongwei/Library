@@ -77,4 +77,7 @@ object MemoryCache {
         mLruCaches.clear()
         LogUtil.log(Tag.MEMORY_CACHE, "clearAll")
     }
+
+
+
 }
