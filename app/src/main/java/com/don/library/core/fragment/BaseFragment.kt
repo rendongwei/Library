@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.don.library.constants.Tag
+import com.don.library.core.mvvm.BaseViewModel
+import com.don.library.extend.createViewModel
 import com.don.library.extend.layout
 import com.don.library.extend.toActivity
 import com.don.library.util.LogUtil
-import com.don.library.core.mvvm.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -155,16 +155,11 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
     }
 
     fun <T : BaseViewModel> createViewModel(cls: Class<T>): T {
-        val viewModel =
-            ViewModelProvider(mActivity, ViewModelProvider.NewInstanceFactory()).get(cls)
-        lifecycle.addObserver(viewModel)
-        return viewModel
+        return createViewModel(mActivity, cls)
     }
 
     fun <T : BaseViewModel> createViewModelInFragment(cls: Class<T>): T {
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(cls)
-        lifecycle.addObserver(viewModel)
-        return viewModel
+        return createViewModel(this, cls)
     }
 
 }

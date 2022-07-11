@@ -4,10 +4,7 @@ import java.io.Serializable
 
 open class BaseResponseBean<T> : Serializable {
 
-    var code: Int = -1
-    var data: T? = null
-    var message: String? = null
-    var loopUrl: String? = null
+    var intervalUrl: String? = null
 
     open fun isSuccess(): Boolean {
         return false
@@ -15,6 +12,14 @@ open class BaseResponseBean<T> : Serializable {
 
     open fun isLogout(): Boolean {
         return false
+    }
+
+    open fun getErrorMessage(): String? {
+        return null
+    }
+
+    open fun getResponse(): T? {
+        return null
     }
 
 }

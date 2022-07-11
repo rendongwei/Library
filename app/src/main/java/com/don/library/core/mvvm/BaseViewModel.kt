@@ -1,6 +1,7 @@
 package com.don.library.core.mvvm
 
 import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
 import com.don.library.bean.BaseResponseBean
@@ -10,13 +11,12 @@ import kotlinx.coroutines.*
 import retrofit2.Response
 
 
-open abstract class BaseViewModel : ViewModel(), LifecycleObserver {
+open class BaseViewModel : ViewModel(), LifecycleObserver, CoroutineScope by MainScope() {
 
-    private val mViewModelJob = SupervisorJob()
-    private val mViewModelScope = CoroutineScope(Dispatchers.Main + mViewModelJob)
-
+    private val mLooper: Looper? = Looper.getMainLooper()
     private val mLoopJobMap = mutableMapOf<String, Job>()
     private val mLoopHandlerMap = mutableMapOf<String, Handler>()
+
 
     fun <T : BaseResponseBean<E>, E> launch(
         block: suspend CoroutineScope.() -> Response<T>,
@@ -26,29 +26,29 @@ open abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         complete: suspend CoroutineScope.() -> Unit = { },
         interval: Long = -1
     ): Job {
-        return mViewModelScope.launch {
+        return launch {
             start()
             try {
                 if (isActive) {
-                    var bean: BaseResponseBean<E>? = withContext(Dispatchers.IO) {
+                    var bean: T? = withContext(Dispatchers.IO) {
                         var response = block()
                         var result = response.body() ?: Gson().fromJson(
                             String(response.errorBody()?.bytes() ?: byteArrayOf()),
-                            object : TypeToken<BaseResponseBean<E>>() {}.type
+                            object : TypeToken<T>() {}.type
                         )
                         var url = response.raw().request().url().toString()
-                        result?.loopUrl = url
+                        result?.intervalUrl = url
                         result
                     }
                     if (bean?.isLogout() == true) {
                         return@launch
                     }
                     if (bean?.isSuccess() == true) {
-                        success(bean.data)
+                        success(bean.getResponse())
                     } else {
-                        error(Pair(bean?.message, bean))
+                        error(Pair(bean?.getErrorMessage(), bean))
                     }
-                    var url = bean?.loopUrl
+                    var url = bean?.intervalUrl
                     if (!url.isNullOrEmpty() && interval > 0) {
                         var job = mLoopJobMap[url]
                         var handler = mLoopHandlerMap[url]
@@ -56,7 +56,7 @@ open abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                         handler?.removeMessages(0x10000)
                         mLoopJobMap.remove(url)
                         mLoopHandlerMap.remove(url)
-                        var newHandler = Handler {
+                        var newHandler = Handler(mLooper) {
                             var newJob = launch(block, { }, success, { }, { }, interval)
                             mLoopJobMap[url] = newJob
                             true
@@ -88,6 +88,6 @@ open abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         }
         mLoopJobMap.clear()
         mLoopHandlerMap.clear()
-        mViewModelScope.cancel()
+        cancel()
     }
 }

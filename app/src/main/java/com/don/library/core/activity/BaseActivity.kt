@@ -9,9 +9,9 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.don.library.extend.layout
 import com.don.library.core.mvvm.BaseViewModel
+import com.don.library.extend.createViewModel
+import com.don.library.extend.layout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -98,8 +98,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     }
 
     fun <T : BaseViewModel> createViewModel(cls: Class<T>): T {
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(cls)
-        lifecycle.addObserver(viewModel)
-        return viewModel
+        return createViewModel(this, cls)
     }
 }

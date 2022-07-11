@@ -112,29 +112,25 @@ fun ImageView.loadImage(
         }
     }
 }
+
 class CustomCircleCropTransformation : Transformation {
     override fun key(): String = CircleCropTransformation::class.java.name
     override suspend fun transform(pool: BitmapPool, input: Bitmap, size: Size): Bitmap {
         val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
         val minSize = min(input.width, input.height)
         val radius = minSize / 2f
-        val output = pool.get(minSize, minSize, input.config?: Bitmap.Config.ARGB_8888)
+        val output = pool.get(minSize, minSize, input.config ?: Bitmap.Config.ARGB_8888)
         output.applyCanvas {
             drawCircle(radius, radius, radius, paint)
-            paint.xfermode = XFERMODE
-            drawBitmap(input, Rect((input.width - minSize) / 2, (input.height - minSize) / 2,
-                    (input.width - minSize) / 2 + minSize, (input.height - minSize) / 2 + minSize),
-                    Rect(0, 0, minSize, minSize), paint)
+            paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+            drawBitmap(
+                input, Rect(
+                    (input.width - minSize) / 2, (input.height - minSize) / 2,
+                    (input.width - minSize) / 2 + minSize, (input.height - minSize) / 2 + minSize
+                ),
+                Rect(0, 0, minSize, minSize), paint
+            )
         }
         return output
-    }
-    override fun equals(other: Any?) = other is CircleCropTransformation
-
-    override fun hashCode() = javaClass.hashCode()
-
-    override fun toString() = "CircleCropTransformation()"
-
-    private companion object {
-        val XFERMODE = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
     }
 }
