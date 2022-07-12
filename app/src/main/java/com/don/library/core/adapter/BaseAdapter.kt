@@ -47,6 +47,12 @@ open abstract class BaseAdapter<T, U> constructor(
         return mList
     }
 
+    fun update(list:MutableList<T>){
+        mList?.clear()
+        mList?.addAll(list)
+        notifyDataSetChanged()
+    }
+
     // 末尾添加一个数据
     fun add(t: T) {
         add(-1, t)

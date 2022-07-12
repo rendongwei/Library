@@ -7,6 +7,7 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 
 fun RecyclerView.setNestedScrollingEnabled(): RecyclerView {
@@ -32,13 +33,26 @@ fun RecyclerView.initLinearLayoutManager(orientation: Int = RecyclerView.VERTICA
     }
 }
 
-fun RecyclerView.initGridLayoutManager(spanCount: Int = 1, spanSizeLookup: GridLayoutManager.SpanSizeLookup? = null): RecyclerView {
+fun RecyclerView.initGridLayoutManager(
+    spanCount: Int = 1,
+    spanSizeLookup: GridLayoutManager.SpanSizeLookup? = null
+): RecyclerView {
     return apply {
         var manager = GridLayoutManager(context, spanCount)
         manager.isSmoothScrollbarEnabled = true
         spanSizeLookup?.let {
             manager.spanSizeLookup = spanSizeLookup
         }
+        layoutManager = manager
+    }
+}
+
+fun RecyclerView.initStaggeredGridManager(
+    spanCount: Int = 2,
+    orientation: Int = StaggeredGridLayoutManager.VERTICAL
+): RecyclerView {
+    return apply {
+        var manager = StaggeredGridLayoutManager(spanCount, orientation)
         layoutManager = manager
     }
 }
@@ -51,7 +65,12 @@ fun RecyclerView.addItemDecoration(rect: Rect): RecyclerView {
     }
 }
 
-fun RecyclerView.addItemDecoration(left: Int = 0, top: Int = 0, right: Int, bottom: Int): RecyclerView {
+fun RecyclerView.addItemDecoration(
+    left: Int = 0,
+    top: Int = 0,
+    right: Int,
+    bottom: Int
+): RecyclerView {
     return apply {
         addItemDecoration(DividerItemDecoration {
             Rect(left, top, right, bottom)
@@ -65,8 +84,14 @@ fun RecyclerView.addItemDecoration(listener: ((position: Int) -> Rect)): Recycle
     }
 }
 
-class DividerItemDecoration constructor(@NonNull var mListener: ((position: Int) -> Rect)) : RecyclerView.ItemDecoration() {
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+class DividerItemDecoration constructor(@NonNull var mListener: ((position: Int) -> Rect)) :
+    RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
         var position = (view?.layoutParams as RecyclerView.LayoutParams).viewLayoutPosition
         var rect = mListener.invoke(position)
         outRect?.set(rect)
