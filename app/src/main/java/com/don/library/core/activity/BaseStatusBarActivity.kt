@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import com.don.library.R
-import com.don.library.core.activity.BaseActivity
 import com.don.library.extend.color
 import com.don.library.util.ColorUtil
 import com.jaeger.library.StatusBarUtil
@@ -30,14 +29,7 @@ open abstract class BaseStatusBarActivity : BaseActivity() {
 
         setFitsSystemWindows(isFitsSystemWindows())
 
-        var color = color(getStatusBarColor())
-        StatusBarUtil.setColorNoTranslucent(this, color)
-
-        if (ColorUtil.isLightColor(color)) {
-            StatusBarUtil.setLightMode(this)
-        } else {
-            StatusBarUtil.setDarkMode(this)
-        }
+        setStatusBarColor(getStatusBarColor())
         resetStatusBar()
     }
 
@@ -51,6 +43,17 @@ open abstract class BaseStatusBarActivity : BaseActivity() {
     // 设置标题栏透明
     fun setStatusBarTransparent() {
         StatusBarUtil.setTransparent(mActivity)
+    }
+
+    fun setStatusBarColor(color: Int) {
+        var c = color(color)
+        StatusBarUtil.setColorNoTranslucent(this, c)
+
+        if (ColorUtil.isLightColor(c)) {
+            StatusBarUtil.setLightMode(this)
+        } else {
+            StatusBarUtil.setDarkMode(this)
+        }
     }
 
     // 设置亮色模式
