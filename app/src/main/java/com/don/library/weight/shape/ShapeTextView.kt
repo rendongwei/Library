@@ -7,7 +7,7 @@ import com.don.library.weight.shape.helper.ShapeHelper
 import com.don.library.weight.shape.interfaces.ILayout
 import com.don.library.weight.shape.interfaces.IShape
 
-class ShapeTextView(
+open class ShapeTextView(
     context: Context,
     attrs: AttributeSet? = null
 ) : androidx.appcompat.widget.AppCompatTextView(context, attrs), ILayout by LayoutHelper(),

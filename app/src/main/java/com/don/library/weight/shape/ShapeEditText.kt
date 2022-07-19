@@ -7,7 +7,7 @@ import com.don.library.weight.shape.helper.ShapeHelper
 import com.don.library.weight.shape.interfaces.ILayout
 import com.don.library.weight.shape.interfaces.IShape
 
-class ShapeEditText(
+open class ShapeEditText(
     context: Context,
     attrs: AttributeSet? = null
 ) : androidx.appcompat.widget.AppCompatEditText(context, attrs), ILayout by LayoutHelper(),

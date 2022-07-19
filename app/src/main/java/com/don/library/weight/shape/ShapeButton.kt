@@ -7,7 +7,7 @@ import com.don.library.weight.shape.helper.ShapeHelper
 import com.don.library.weight.shape.interfaces.ILayout
 import com.don.library.weight.shape.interfaces.IShape
 
-class ShapeButton(
+open class ShapeButton(
     context: Context,
     attrs: AttributeSet? = null
 ) : androidx.appcompat.widget.AppCompatButton(context, attrs), ILayout by LayoutHelper(),

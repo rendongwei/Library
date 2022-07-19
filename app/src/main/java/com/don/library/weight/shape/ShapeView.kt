@@ -8,7 +8,7 @@ import com.don.library.weight.shape.helper.ShapeHelper
 import com.don.library.weight.shape.interfaces.ILayout
 import com.don.library.weight.shape.interfaces.IShape
 
-class ShapeView(
+open class ShapeView(
     context: Context,
     attrs: AttributeSet? = null
 ) : View(context, attrs), ILayout by LayoutHelper(), IShape by ShapeHelper() {
