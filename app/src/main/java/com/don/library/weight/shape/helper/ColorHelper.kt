@@ -2,7 +2,9 @@ package com.don.library.weight.shape.helper
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
+import android.view.View
 import android.widget.TextView
 import androidx.core.graphics.ColorUtils
 import com.don.library.R
@@ -12,16 +14,17 @@ import java.lang.ref.WeakReference
 class ColorHelper : IColor {
 
     private var mContext: Context? = null
-    private var mOwner: WeakReference<TextView>? = null
+    private var mOwner: WeakReference<View>? = null
 
     private var mTextColorAlpha: Float = 1f
+    private var mBackgroundColorAlpha: Float = 1f
     private var mNormalColor: Int = 0
     private var mPressedColor: Int = 0
     private var mNoEnableColor: Int = 0
     private var mFocusColor: Int = 0
     private var mSelectedColor: Int = 0
 
-    override fun initColor(view: TextView, attrs: AttributeSet?) {
+    override fun initColor(view: View, attrs: AttributeSet?) {
         mContext = view.context
         mOwner = WeakReference(view)
         if (attrs != null) {
@@ -32,6 +35,7 @@ class ColorHelper : IColor {
                 0
             )
             mTextColorAlpha = typedArray.getFloat(R.styleable.Color_textColorAlpha, 1f)
+            mBackgroundColorAlpha = typedArray.getFloat(R.styleable.Color_backgroundColorAlpha, 1f)
             mNormalColor = typedArray.getColor(R.styleable.Color_textNormalColor, 0)
             mPressedColor = typedArray.getColor(R.styleable.Color_textPressedColor, 0)
             mNoEnableColor = typedArray.getColor(R.styleable.Color_textNoEnableColor, 0)
@@ -40,13 +44,30 @@ class ColorHelper : IColor {
             typedArray.recycle()
         }
         setTextColorAlpha(mTextColorAlpha)
+        setBackgroundColorAlpha(mBackgroundColorAlpha)
         setColor()
     }
 
     override fun setTextColorAlpha(alpha: Float) {
         mTextColorAlpha = alpha
         mOwner?.get()?.apply {
-            setTextColor(ColorUtils.setAlphaComponent(currentTextColor, (255 * alpha).toInt()))
+            if (this is TextView) {
+                setTextColor(ColorUtils.setAlphaComponent(currentTextColor, (255 * alpha).toInt()))
+            }
+        }
+    }
+
+    override fun setBackgroundColorAlpha(alpha: Float) {
+        mBackgroundColorAlpha = alpha
+        mOwner?.get()?.apply {
+            if (background is ColorDrawable) {
+                setBackgroundColor(
+                    ColorUtils.setAlphaComponent(
+                        (background as ColorDrawable).color,
+                        (255 * alpha).toInt()
+                    )
+                )
+            }
         }
     }
 
@@ -75,31 +96,33 @@ class ColorHelper : IColor {
             return
         }
         mOwner?.get()?.apply {
-            val stateArray = mutableListOf<IntArray>()
-            val colorArray = arrayListOf<Int>()
-            if (mNormalColor == 0) {
-                mNormalColor = currentTextColor
-            }
+            if (this is TextView) {
+                val stateArray = mutableListOf<IntArray>()
+                val colorArray = arrayListOf<Int>()
+                if (mNormalColor == 0) {
+                    mNormalColor = currentTextColor
+                }
 
-            if (mPressedColor != 0) {
-                stateArray.add(intArrayOf(android.R.attr.state_pressed))
-                colorArray.add(mPressedColor)
+                if (mPressedColor != 0) {
+                    stateArray.add(intArrayOf(android.R.attr.state_pressed))
+                    colorArray.add(mPressedColor)
+                }
+                if (mNoEnableColor != 0) {
+                    stateArray.add(intArrayOf(-android.R.attr.state_enabled))
+                    colorArray.add(mNoEnableColor)
+                }
+                if (mFocusColor != 0) {
+                    stateArray.add(intArrayOf(android.R.attr.state_focused))
+                    colorArray.add(mFocusColor)
+                }
+                if (mSelectedColor != 0) {
+                    stateArray.add(intArrayOf(android.R.attr.state_selected))
+                    colorArray.add(mSelectedColor)
+                }
+                stateArray.add(intArrayOf())
+                colorArray.add(mNormalColor)
+                setTextColor(ColorStateList(stateArray.toTypedArray(), colorArray.toIntArray()))
             }
-            if (mNoEnableColor != 0) {
-                stateArray.add(intArrayOf(-android.R.attr.state_enabled))
-                colorArray.add(mNoEnableColor)
-            }
-            if (mFocusColor != 0) {
-                stateArray.add(intArrayOf(android.R.attr.state_focused))
-                colorArray.add(mFocusColor)
-            }
-            if (mSelectedColor != 0) {
-                stateArray.add(intArrayOf(android.R.attr.state_selected))
-                colorArray.add(mSelectedColor)
-            }
-            stateArray.add(intArrayOf())
-            colorArray.add(mNormalColor)
-            setTextColor(ColorStateList(stateArray.toTypedArray(), colorArray.toIntArray()))
         }
     }
 

@@ -128,6 +128,7 @@
 
     <declare-styleable name="Color">
         <attr name="textColorAlpha" format="float" />
+        <attr name="backgroundColorAlpha" format="float" />
         <attr name="textNormalColor" format="color|reference" />
         <attr name="textPressedColor" format="color|reference" />
         <attr name="textNoEnableColor" format="color|reference"/>
