@@ -2,7 +2,6 @@ package com.don.library.weight.shape.helper
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
@@ -52,7 +51,12 @@ class ColorHelper : IColor {
         mTextColorAlpha = alpha
         mOwner?.get()?.apply {
             if (this is TextView) {
-                setTextColor(ColorUtils.setAlphaComponent(currentTextColor, (255 * alpha).toInt()))
+                setTextColor(
+                    ColorUtils.setAlphaComponent(
+                        currentTextColor,
+                        (255 * alpha).toInt().coerceIn(0, 255)
+                    )
+                )
             }
         }
     }
@@ -60,14 +64,7 @@ class ColorHelper : IColor {
     override fun setBackgroundColorAlpha(alpha: Float) {
         mBackgroundColorAlpha = alpha
         mOwner?.get()?.apply {
-            if (background is ColorDrawable) {
-                setBackgroundColor(
-                    ColorUtils.setAlphaComponent(
-                        (background as ColorDrawable).color,
-                        (255 * alpha).toInt()
-                    )
-                )
-            }
+            background.alpha = (255 * alpha).toInt().coerceIn(0, 255)
         }
     }
 
