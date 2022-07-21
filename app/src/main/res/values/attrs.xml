@@ -131,9 +131,17 @@
         <attr name="backgroundColorAlpha" format="float" />
         <attr name="textNormalColor" format="color|reference" />
         <attr name="textPressedColor" format="color|reference" />
-        <attr name="textNoEnableColor" format="color|reference"/>
-        <attr name="textFocusColor" format="color|reference"/>
-        <attr name="textSelectedColor" format="color|reference"/>
+        <attr name="textNoEnableColor" format="color|reference" />
+        <attr name="textFocusColor" format="color|reference" />
+        <attr name="textSelectedColor" format="color|reference" />
 
+    </declare-styleable>
+
+    <declare-styleable name="Drawable">
+        <attr name="backgroundNormalDrawable" format="reference" />
+        <attr name="backgroundPressedDrawable" format="reference" />
+        <attr name="backgroundNoEnableDrawable" format="reference" />
+        <attr name="backgroundFocusDrawable" format="reference" />
+        <attr name="backgroundSelectedDrawable" format="reference" />
     </declare-styleable>
 </resources>
