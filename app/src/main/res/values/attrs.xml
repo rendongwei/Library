@@ -144,4 +144,13 @@
         <attr name="backgroundFocusDrawable" format="reference" />
         <attr name="backgroundSelectedDrawable" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="Image">
+        <attr name="normalSrc" format="reference" />
+        <attr name="pressedSrc" format="reference" />
+        <attr name="noEnableSrc" format="reference" />
+        <attr name="focusSrc" format="reference" />
+        <attr name="selectedSrc" format="reference" />
+    </declare-styleable>
+
 </resources>
