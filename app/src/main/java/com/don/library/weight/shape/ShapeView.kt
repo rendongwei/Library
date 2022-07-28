@@ -20,7 +20,7 @@ open class ShapeView(
 
     init {
         initLayout(this, attrs)
-        initLayout(this, attrs)
+        initShape(this, attrs)
         initColor(this, attrs)
         initDrawable(this, attrs)
     }
