@@ -64,7 +64,7 @@ class ColorHelper : IColor {
     override fun setBackgroundColorAlpha(alpha: Float) {
         mBackgroundColorAlpha = alpha
         mOwner?.get()?.apply {
-            background.alpha = (255 * alpha).toInt().coerceIn(0, 255)
+            background?.alpha = (255 * alpha).toInt().coerceIn(0, 255)
         }
     }
 

@@ -161,6 +161,7 @@ class MyLinearLayoutManager(context: Context) : LinearLayoutManager(context) {
         try {
             super.onLayoutChildren(recycler, state)
         } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }
