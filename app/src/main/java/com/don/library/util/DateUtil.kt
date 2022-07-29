@@ -236,7 +236,7 @@ object DateUtil {
         return weekDays[w]
     }
 
-    fun getCountDown(time: Long): String {
+    fun getCountDown(time: Long, isRetainHour: Boolean = false): String {
         val lastTime = time / 1000
         val day = (lastTime / (60 * 60 * 24)).toInt()
         val hours = (lastTime / (60 * 60) - day * 24).toInt()
@@ -248,8 +248,12 @@ object DateUtil {
             buffer.append(day)
             buffer.append("天")
         }
-        if (hours > 0) {
-            buffer.append(hours)
+        if (hours > 0 || isRetainHour) {
+            if (hours < 10) {
+                buffer.append("0$hours")
+            } else {
+                buffer.append(hours)
+            }
             buffer.append(":")
         }
         if (minutes < 10) {
