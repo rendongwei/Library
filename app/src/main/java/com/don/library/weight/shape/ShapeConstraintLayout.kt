@@ -1,6 +1,7 @@
 package com.don.library.weight.shape
 
 import android.content.Context
+import android.graphics.Canvas
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.*
@@ -32,6 +33,12 @@ open class ShapeConstraintLayout(
         initColor(this, attrs)
         initDrawable(this, attrs)
         mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    }
+
+    override fun dispatchDraw(canvas: Canvas) {
+        super.dispatchDraw(canvas)
+        drawDividers(canvas, width, height)
+        dispatchRoundBorderDraw(canvas)
     }
 
     override fun onAttachedToWindow() {

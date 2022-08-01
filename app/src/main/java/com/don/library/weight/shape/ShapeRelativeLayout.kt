@@ -1,6 +1,7 @@
 package com.don.library.weight.shape
 
 import android.content.Context
+import android.graphics.Canvas
 import android.util.AttributeSet
 import android.widget.RelativeLayout
 import androidx.lifecycle.*
@@ -33,6 +34,12 @@ open class ShapeRelativeLayout(
         initColor(this, attrs)
         initDrawable(this, attrs)
         mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    }
+
+    override fun dispatchDraw(canvas: Canvas) {
+        super.dispatchDraw(canvas)
+        drawDividers(canvas, width, height)
+        dispatchRoundBorderDraw(canvas)
     }
 
     override fun onAttachedToWindow() {

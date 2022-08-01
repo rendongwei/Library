@@ -1,6 +1,7 @@
 package com.don.library.weight.shape
 
 import android.content.Context
+import android.graphics.Canvas
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.lifecycle.*
@@ -17,7 +18,7 @@ open class ShapeLinearLayout(
     context: Context,
     attrs: AttributeSet? = null
 ) : LinearLayout(context, attrs), ILayout by LayoutHelper(), IShape by ShapeHelper(),
-    IColor by ColorHelper(),  IDrawable by DrawableHelper(),
+    IColor by ColorHelper(), IDrawable by DrawableHelper(),
     LifecycleOwner, ViewModelStoreOwner {
 
     private val mLifecycleRegistry by lazy {
@@ -31,8 +32,14 @@ open class ShapeLinearLayout(
         initLayout(this, attrs)
         initShape(this, attrs)
         initColor(this, attrs)
-        initDrawable(this,attrs)
+        initDrawable(this, attrs)
         mLifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    }
+
+    override fun dispatchDraw(canvas: Canvas) {
+        super.dispatchDraw(canvas)
+        drawDividers(canvas, width, height)
+        dispatchRoundBorderDraw(canvas)
     }
 
     override fun onAttachedToWindow() {

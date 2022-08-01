@@ -653,7 +653,7 @@ class LayoutHelper : ILayout {
         return heightMeasureSpec
     }
 
-    fun drawDividers(canvas: Canvas, w: Int, h: Int) {
+    override fun drawDividers(canvas: Canvas, w: Int, h: Int) {
         mOwner?.get()?.apply {
             if (mDividerPaint == null && (mLeftDividerWidth > 0 || mTopDividerHeight > 0 || mRightDividerWidth > 0 || mBottomDividerHeight > 0)) {
                 mDividerPaint = Paint()
@@ -724,7 +724,7 @@ class LayoutHelper : ILayout {
         }
     }
 
-    fun dispatchRoundBorderDraw(canvas: Canvas) {
+    override fun dispatchRoundBorderDraw(canvas: Canvas) {
         mOwner?.get()?.apply {
             var radius = getRealRadius()
             var needCheckFakeOuterNormalDraw = radius > 0 && !useFeature() && mOuterNormalColor != 0

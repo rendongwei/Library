@@ -1,5 +1,6 @@
 package com.don.library.weight.shape.interfaces
 
+import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
@@ -34,6 +35,10 @@ interface ILayout {
 
     // 初始化
     fun initLayout(view: View, attrs: AttributeSet?)
+
+    fun drawDividers(canvas: Canvas, width: Int, height: Int)
+
+    fun dispatchRoundBorderDraw(canvas: Canvas)
 
     // 限制宽度
     fun setWidthLimit(widthLimit: Int): Boolean

@@ -1,6 +1,7 @@
 package com.don.library.weight.shape
 
 import android.content.Context
+import android.graphics.Canvas
 import android.util.AttributeSet
 import com.don.library.weight.shape.helper.ColorHelper
 import com.don.library.weight.shape.helper.DrawableHelper
@@ -25,4 +26,9 @@ open class ShapeTextView(
         includeFontPadding = false
     }
 
+    override fun dispatchDraw(canvas: Canvas) {
+        super.dispatchDraw(canvas)
+        drawDividers(canvas, width, height)
+        dispatchRoundBorderDraw(canvas)
+    }
 }

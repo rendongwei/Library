@@ -1,6 +1,7 @@
 package com.don.library.weight.shape
 
 import android.content.Context
+import android.graphics.Canvas
 import android.util.AttributeSet
 import com.don.library.weight.shape.helper.DrawableHelper
 import com.don.library.weight.shape.helper.ImageHelper
@@ -24,4 +25,9 @@ open class ShapeImageView(
         initImage(this, attrs)
     }
 
+    override fun dispatchDraw(canvas: Canvas) {
+        super.dispatchDraw(canvas)
+        drawDividers(canvas, width, height)
+        dispatchRoundBorderDraw(canvas)
+    }
 }
