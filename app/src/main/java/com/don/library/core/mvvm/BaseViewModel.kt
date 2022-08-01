@@ -20,7 +20,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver, CoroutineScope by Mai
 
     fun <T : BaseResponseBean<E>, E> launch(
         block: suspend CoroutineScope.() -> Response<T>,
-        error: suspend CoroutineScope.(Pair<String?, E?>) -> Unit = { },
+        error: suspend CoroutineScope.(Pair<String?, BaseResponseBean<E>?>) -> Unit = { },
         success: suspend CoroutineScope.(E?) -> Unit = {},
         start: suspend CoroutineScope.() -> Unit = { },
         complete: suspend CoroutineScope.() -> Unit = { },
