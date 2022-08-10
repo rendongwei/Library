@@ -24,6 +24,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver, CoroutineScope by Mai
         success: suspend CoroutineScope.(E?) -> Unit = {},
         start: suspend CoroutineScope.() -> Unit = { },
         complete: suspend CoroutineScope.() -> Unit = { },
+        logout: suspend CoroutineScope.() -> Unit = { },
         interval: Long = -1
     ): Job {
         return launch {
@@ -41,6 +42,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver, CoroutineScope by Mai
                         result
                     }
                     if (bean?.isLogout() == true) {
+                        logout()
                         return@launch
                     }
                     if (bean?.isSuccess() == true) {
@@ -57,7 +59,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver, CoroutineScope by Mai
                         mLoopJobMap.remove(url)
                         mLoopHandlerMap.remove(url)
                         var newHandler = Handler(mLooper) {
-                            var newJob = launch(block, { }, success, { }, { }, interval)
+                            var newJob = launch(block, { }, success, { }, { }, logout, interval)
                             mLoopJobMap[url] = newJob
                             true
                         }
