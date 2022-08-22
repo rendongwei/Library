@@ -31,6 +31,11 @@ class ListenerAdapter<T> constructor(
         with(holder.itemView) {
             getItem(position)?.apply {
                 mListener.invoke(this@with, position, this)
+                mItemClickListener?.let { listener ->
+                    setOnClickListener {
+                        listener.invoke(this@with, position, this)
+                    }
+                }
             }
         }
     }

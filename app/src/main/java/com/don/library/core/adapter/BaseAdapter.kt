@@ -21,6 +21,8 @@ open abstract class BaseAdapter<T, U> constructor(
         mContext.toActivity<AppCompatActivity>()
     }
 
+    protected var mItemClickListener: ((v: View, position: Int, bean: T) -> Unit)? = null
+
     init {
         setHasStableIds(true)
     }
@@ -47,7 +49,7 @@ open abstract class BaseAdapter<T, U> constructor(
         return mList
     }
 
-    fun update(list:MutableList<T>){
+    fun update(list: MutableList<T>) {
         mList?.clear()
         mList?.addAll(list)
         notifyDataSetChanged()
@@ -105,6 +107,10 @@ open abstract class BaseAdapter<T, U> constructor(
     // 刷新某个数据源
     fun change(index: Int) {
         notifyItemChanged(index)
+    }
+
+    fun setOnItemClickListener(listener: ((v: View, position: Int, bean: T) -> Unit)?) {
+        mItemClickListener = listener
     }
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view)

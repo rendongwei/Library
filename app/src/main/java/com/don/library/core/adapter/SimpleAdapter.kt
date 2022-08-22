@@ -28,6 +28,11 @@ abstract class SimpleAdapter<T> constructor(context: Context, list: MutableList<
         with(holder.itemView) {
             getItem(position)?.apply {
                 bindView(this@with, position, this)
+                mItemClickListener?.let { listener ->
+                    setOnClickListener {
+                        listener.invoke(this@with, position, this)
+                    }
+                }
             }
         }
     }

@@ -33,6 +33,11 @@ abstract class BaseMultipleAdapter<T> constructor(context: Context, list: Mutabl
         with(holder.itemView) {
             getItem(position)?.apply {
                 bindView(this@with, position, this)
+                mItemClickListener?.let { listener ->
+                    setOnClickListener {
+                        listener.invoke(this@with, position, this)
+                    }
+                }
             }
         }
     }
