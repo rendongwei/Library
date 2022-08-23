@@ -708,7 +708,7 @@ class LayoutHelper : ILayout {
             if (mRightDividerWidth > 0) {
                 mDividerPaint?.strokeWidth = mRightDividerWidth.toFloat()
                 mDividerPaint?.color = mRightDividerColor
-                if (mRightDividerWidth < 255) {
+                if (mRightDividerAlpha < 255) {
                     mDividerPaint?.alpha = mRightDividerWidth
                 }
                 val x = floor(w - mRightDividerWidth / 2f)
