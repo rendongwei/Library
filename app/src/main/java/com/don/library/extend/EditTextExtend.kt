@@ -112,6 +112,54 @@ fun EditText.setPointNum(length: Int, pointNum: Int) {
     filters = inputFilters.toTypedArray()
 }
 
+fun EditText.setPoint(before: Int, after: Int) {
+    val pattern = Pattern.compile("[0-9]{0,}+(\\.[0-9]{0,})?")
+    val inputFilter = InputFilter { source, _, _, dest, _, _ ->
+        val dValue = dest.toString()
+        if (source == ".") {
+            if (dest.isEmpty()) {
+                return@InputFilter "0."
+            } else if (dValue.contains(".")) {
+                return@InputFilter ""
+            }
+        }
+        if (dest.isEmpty() && source == "0") {
+            return@InputFilter "0."
+        }
+        val matcher = pattern.matcher(source.toString())
+        if (!matcher.matches()) {
+            return@InputFilter ""
+        }
+        val splitArray = dValue.split("\\.".toRegex()).toTypedArray()
+        if (splitArray.size > 1) {
+            val numberValue = splitArray[0]
+            val dotValue = splitArray[1]
+            val curInputLength = numberValue.length + dotValue.length
+
+            if (curInputLength >= before + after) {
+                return@InputFilter ""
+            }
+
+            if (inCursorBeforePoint() && numberValue.length >= before) {
+                return@InputFilter ""
+            }
+
+            if (!inCursorBeforePoint() && dotValue.length >= after) {
+                return@InputFilter ""
+            }
+        } else {
+            if (dValue.length >= before && source != ".") {
+                return@InputFilter ""
+            }
+        }
+        null
+    }
+    setMaxLength(before + after + 1)
+    val inputFilters = mutableListOf<InputFilter>()
+    inputFilters.addAll(filters)
+    inputFilters.add(inputFilter)
+    filters = inputFilters.toTypedArray()
+}
 
 fun EditText.inCursorBeforePoint(): Boolean {
     val text = text.toString().trim()
