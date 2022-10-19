@@ -43,6 +43,10 @@ object ActivityManager {
         return mActivities.last
     }
 
+    fun getActivities(): LinkedList<Activity> {
+        return mActivities
+    }
+
     // 关闭所有已添加的activity
     fun finishAll() {
         mActivities.forEach {
