@@ -6,15 +6,14 @@ import java.util.*
 
 object DateUtil {
 
-    const val FORMAT_Y_M_D_H_M_S = "yyyy/MM/dd HH:mm:ss"
-    const val FORMAT_Y_M_D_H_M = "yyyy/MM/dd HH:mm"
-    const val FORMAT_Y_M_D = "yyyy/MM/dd"
+    const val FORMAT_Y_M_D_H_M_S = "yyyy-MM-dd HH:mm:ss"
+    const val FORMAT_Y_M_D_H_M = "yyyy-MM-dd HH:mm"
+    const val FORMAT_Y_M_D = "yyyy-MM-dd"
     const val FORMAT_Y_M_DZH = "yyyy年MM月dd日"
-    const val FORMAT_YMD = "yyyy-MM-dd"
-    const val FORMAT_Y_M = "yyyy/MM"
-    const val FORMAT_M_D_H_M_S = "MM/dd HH:mm:ss"
-    const val FORMAT_M_D_H_M = "MM/dd HH:mm"
-    const val FORMAT_M_D = "MM/dd"
+    const val FORMAT_Y_M = "yyyy-MM"
+    const val FORMAT_M_D_H_M_S = "MM-dd HH:mm:ss"
+    const val FORMAT_M_D_H_M = "MM-dd HH:mm"
+    const val FORMAT_M_D = "MM-dd"
     const val FORMAT_M_DZH = "MM月dd日"
     const val FORMAT_M_D_H_MZH = "MM月dd日 HH:mm"
     const val FORMAT_H_M_S = "HH:mm:ss"
