@@ -12,6 +12,7 @@ object AppUtil {
             versionName = pm.versionName
             versionCode = pm.versionCode
         } catch (e: Exception) {
+            e.printStackTrace()
         }
         return Pair(versionName, versionCode)
     }
