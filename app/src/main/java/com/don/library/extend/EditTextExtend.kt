@@ -1,5 +1,6 @@
 package com.don.library.extend
 
+import android.app.Activity
 import android.content.Context
 import android.text.InputFilter
 import android.view.inputmethod.InputMethodManager
@@ -10,19 +11,31 @@ import java.util.regex.Pattern
 // 显示键盘
 fun EditText.showSoftInput(): EditText {
     requestFocus()
-    var manager =
+    val manager =
         context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    manager.showSoftInput(this, 0)
+    manager.showSoftInput(this, InputMethodManager.RESULT_SHOWN)
+    manager.toggleSoftInput(
+        InputMethodManager.SHOW_FORCED,
+        InputMethodManager.HIDE_IMPLICIT_ONLY
+    )
     return this
 }
 
 // 隐藏键盘
 fun EditText.hideSoftInput(): EditText {
     clearFocus()
-    var manager =
+    val manager =
         context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     manager.hideSoftInputFromWindow(windowToken, 0)
     return this
+}
+
+fun Activity.hideSoftInput() {
+    currentFocus?.apply {
+        val manager =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        manager.hideSoftInputFromWindow(this.windowToken, 0)
+    }
 }
 
 fun EditText.setMaxLength(@IntRange(from = 0) length: Int): EditText {
